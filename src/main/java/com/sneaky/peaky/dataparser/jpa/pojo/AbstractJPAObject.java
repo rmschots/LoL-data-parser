@@ -14,4 +14,9 @@ public abstract class AbstractJPAObject implements Serializable{
     public String toJSON() {
         return GSON.toJson(this);
     }
+    
+    @Override
+    public String toString(){
+        return toJSON();
+    }
 }
