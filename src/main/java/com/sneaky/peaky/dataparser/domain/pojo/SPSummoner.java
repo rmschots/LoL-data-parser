@@ -12,7 +12,6 @@ import lombok.experimental.Builder;
 @Setter
 @Builder
 public class SPSummoner extends AbstractSPObject{
-    private Long id;
     private Long summonerId;
     private String name;
     private Integer profileIconId;

@@ -8,7 +8,7 @@ import javax.persistence.Query;
  *
  * @author Roel Mangelschots
  */
-public class SummonerDao extends AbstractDao<JPASummoner>{
+public class SummonerDao extends AbstractDao<JPASummoner> implements Dao<JPASummoner>{
     public SummonerDao(){
         super();
     }

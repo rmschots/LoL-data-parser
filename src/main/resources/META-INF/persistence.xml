@@ -3,6 +3,8 @@
   <persistence-unit name="com.sneaky.peaky_dataparser" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>com.sneaky.peaky.dataparser.jpa.pojo.JPASummoner</class>
+    <class>com.sneaky.peaky.dataparser.jpa.pojo.JPAMiniSeries</class>
+    <class>com.sneaky.peaky.dataparser.jpa.pojo.JPARanking</class>
     <properties>
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/lol_database?zeroDateTimeBehavior=convertToNull"/>
