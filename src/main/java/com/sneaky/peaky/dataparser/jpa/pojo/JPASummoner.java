@@ -1,8 +1,10 @@
 package com.sneaky.peaky.dataparser.jpa.pojo;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import lombok.AccessLevel;
@@ -32,6 +34,8 @@ public class JPASummoner extends AbstractJPAObject {
     private Integer profileIconId;
     private Long revisionDate;
     private Long summonerLevel;
+    @ManyToMany(mappedBy = "roster")
+    private List<JPATeam> teams;
 
     public JPASummoner() {
     }

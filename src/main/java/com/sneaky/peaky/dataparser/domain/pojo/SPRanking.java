@@ -12,18 +12,18 @@ import lombok.experimental.Builder;
 @Setter
 @Builder
 public class SPRanking extends AbstractSPObject{
-    private boolean isFreshBlood;
-    private boolean isHotStreak;
-    private boolean isInactive;
-    private boolean isVeteran;
-    private long lastPlayed;
+    private Boolean isFreshBlood;
+    private Boolean isHotStreak;
+    private Boolean isInactive;
+    private Boolean isVeteran;
+    private Long lastPlayed;
     private String leagueName;
-    private int leaguePoints;
+    private Integer leaguePoints;
     private SPMiniSeries miniSeries;
     private String playerOrTeamId;
     private String playerOrTeamName;
     private String queueType;
-    private int rank;
+    private Integer rank;
     private String tier;
-    private int wins;
+    private Integer wins;
 }

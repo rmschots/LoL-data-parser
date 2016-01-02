@@ -12,10 +12,10 @@ import lombok.experimental.Builder;
 @Setter
 @Builder
 public class SPMiniSeries extends AbstractSPObject{
-    private int wins;
-    private int losses;
+    private Integer wins;
+    private Integer losses;
     private String progress;
-    private int target;
-    private long timeLeftToPlayMillis;
+    private Integer target;
+    private Long timeLeftToPlayMillis;
     
 }

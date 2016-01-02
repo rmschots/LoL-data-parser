@@ -1,12 +1,11 @@
 package com.sneaky.peaky.dataparser;
 
-import com.sneaky.peaky.dataparser.dao.RankingDao;
 import com.sneaky.peaky.dataparser.jpa.mapper.SummonerJPAToSPMapper;
 import com.sneaky.peaky.dataparser.domain.mapper.SummonerRestMapper;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import net.boreeas.riotapi.Shard;
-import net.boreeas.riotapi.rest.RankedTeam;
+import net.boreeas.riotapi.rest.Summoner;
 import net.boreeas.riotapi.rest.ThrottledApiHandler;
 import static net.boreeas.riotapi.rest.ThrottledApiHandler.*;
 
@@ -32,8 +31,13 @@ public class Main {
         Limit limit2 = new Limit(500, 10, TimeUnit.MINUTES);
         ThrottledApiHandler handler = new ThrottledApiHandler(Shard.EUW, API_KEY, limit1, limit2);
         
-        RankedTeam team = handler.getTeam("TEAM-f07ed190-f0d9-11e4-b090-c81f66db96d8").get();
-        System.out.println(team.getName());
+//        RankedTeam team = handler.getTeam("TEAM-f07ed190-f0d9-11e4-b090-c81f66db96d8").get();
+//        System.out.println(team.getName());
+        Summoner summ = handler.getSummoner("Morsu").get();
+        System.out.println(summ.getId());
+        
+//        summ = handler.getSummoner("Je suis kaas").get();
+//        System.out.println(summ.getId());
         
 //        RankingService rankingService = new RankingService();
 //        rankingService.fetchChallengerRanks(handler, QueueType.RANKED_TEAM_5x5);

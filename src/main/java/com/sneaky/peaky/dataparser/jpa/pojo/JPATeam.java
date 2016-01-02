@@ -1,8 +1,10 @@
 package com.sneaky.peaky.dataparser.jpa.pojo;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import lombok.AccessLevel;
@@ -10,6 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Builder;
+import net.boreeas.riotapi.com.riotgames.team.dto.Roster;
 
 /**
  *
@@ -27,21 +30,22 @@ public class JPATeam extends AbstractJPAObject{
     @GeneratedValue
     private Long id;
     
-    private long createDate;
+    private Long createDate;
     private String fullId;
-    private long lastGameDate;
-    private long lastJoinDate;
-    private long lastJoinedRankedTeamQueueDate;
+    private Long lastGameDate;
+    private Long lastJoinDate;
+    private Long lastJoinedRankedTeamQueueDate;
     //private List<MatchHistorySummary> matchHistory = new ArrayList<>();
     //private MessageOfDay messageOfDay;
-    private long modifyDate;
+    private Long modifyDate;
     private String name;
-    //private Roster roster;
-    private long secondLastJoinDate;
+    @ManyToMany
+    private List<JPASummoner> roster;
+    private Long secondLastJoinDate;
     private String status;
     private String tag;
     //private TeamStatSummary teamStatSummary;
-    private long thirdLastJoinDate;
+    private Long thirdLastJoinDate;
 
     public JPATeam() {
     }

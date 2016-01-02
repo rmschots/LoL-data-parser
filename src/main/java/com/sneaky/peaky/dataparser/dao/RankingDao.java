@@ -1,7 +1,6 @@
 package com.sneaky.peaky.dataparser.dao;
 
 import com.sneaky.peaky.dataparser.jpa.pojo.JPARanking;
-import com.sneaky.peaky.dataparser.jpa.pojo.JPASummoner;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;

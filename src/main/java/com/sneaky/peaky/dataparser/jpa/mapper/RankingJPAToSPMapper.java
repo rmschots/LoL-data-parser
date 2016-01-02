@@ -24,10 +24,10 @@ public class RankingJPAToSPMapper implements BidirectionalJPAToSPMapper<JPARanki
 
     private JPARanking.JPARankingBuilder createBasicJPARanking(SPRanking spRanking) {
         return JPARanking.builder()
-                .isFreshBlood(spRanking.isFreshBlood())
-                .isHotStreak(spRanking.isHotStreak())
-                .isInactive(spRanking.isInactive())
-                .isVeteran(spRanking.isVeteran())
+                .isFreshBlood(spRanking.getIsFreshBlood())
+                .isHotStreak(spRanking.getIsHotStreak())
+                .isInactive(spRanking.getIsInactive())
+                .isVeteran(spRanking.getIsVeteran())
                 .lastPlayed(spRanking.getLastPlayed())
                 .leagueName(spRanking.getLeagueName())
                 .leaguePoints(spRanking.getLeaguePoints())
@@ -43,10 +43,10 @@ public class RankingJPAToSPMapper implements BidirectionalJPAToSPMapper<JPARanki
     @Override
     public SPRanking mapToDomain(JPARanking jpaRanking) {
         return SPRanking.builder()
-                .isFreshBlood(jpaRanking.isFreshBlood())
-                .isHotStreak(jpaRanking.isHotStreak())
-                .isInactive(jpaRanking.isInactive())
-                .isVeteran(jpaRanking.isVeteran())
+                .isFreshBlood(jpaRanking.getIsFreshBlood())
+                .isHotStreak(jpaRanking.getIsHotStreak())
+                .isInactive(jpaRanking.getIsInactive())
+                .isVeteran(jpaRanking.getIsVeteran())
                 .lastPlayed(jpaRanking.getLastPlayed())
                 .leagueName(jpaRanking.getLeagueName())
                 .leaguePoints(jpaRanking.getLeaguePoints())

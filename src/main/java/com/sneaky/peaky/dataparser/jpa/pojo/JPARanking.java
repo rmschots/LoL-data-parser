@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.sneaky.peaky.dataparser.jpa.pojo;
 
 import javax.persistence.Entity;
@@ -33,13 +28,13 @@ public class JPARanking extends AbstractJPAObject{
     @GeneratedValue
     private Long id;
     
-    private boolean isFreshBlood;
-    private boolean isHotStreak;
-    private boolean isInactive;
-    private boolean isVeteran;
-    private long lastPlayed;
+    private Boolean isFreshBlood;
+    private Boolean isHotStreak;
+    private Boolean isInactive;
+    private Boolean isVeteran;
+    private Long lastPlayed;
     private String leagueName;
-    private int leaguePoints;
+    private Integer leaguePoints;
     @OneToOne
     private JPAMiniSeries miniSeries;
     private JPASummoner player;
@@ -48,8 +43,8 @@ public class JPARanking extends AbstractJPAObject{
     private String queueType;
     private Integer rank;
     private String tier;
-    private int wins;
-    private long revisionDate;
+    private Integer wins;
+    private Long revisionDate;
 
     public JPARanking() {
     }

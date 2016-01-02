@@ -27,11 +27,11 @@ public class JPAMiniSeries extends AbstractJPAObject {
     private Long id;
     @OneToOne(mappedBy = "miniSeries")
     private JPARanking ranking;
-    private int wins;
-    private int losses;
+    private Integer wins;
+    private Integer losses;
     private String progress;
-    private int target;
-    private long timeLeftToPlayMillis;
+    private Integer target;
+    private Long timeLeftToPlayMillis;
 
     public JPAMiniSeries() {
     }
