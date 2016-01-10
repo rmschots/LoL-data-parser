@@ -13,7 +13,7 @@ public class SummonerDao extends AbstractDao<JPASummoner> implements Dao<JPASumm
         super();
     }
     
-    public JPASummoner find(Long summonerId, Long revisionDate) {
+    public JPASummoner findBySummonerId(Long summonerId, Long revisionDate) {
         final StringBuffer queryString = new StringBuffer(
                 "SELECT o from ");
         queryString.append(type.getSimpleName()).append(" o ");
@@ -30,6 +30,21 @@ public class SummonerDao extends AbstractDao<JPASummoner> implements Dao<JPASumm
         return result;
     }
     
-    
+    public JPASummoner findBySummonerId(String summonerId) {
+        final StringBuffer queryString = new StringBuffer(
+                "SELECT o from ");
+        queryString.append(type.getSimpleName()).append(" o ");
+        queryString.append("WHERE o.summonerId = ").append(summonerId).append(" ORDER BY o.revisionDate DESC");
+        EntityManager em = openSession();
+        final Query query = em.createQuery(queryString.toString()).setMaxResults(1);
+        JPASummoner result;
+        try{
+            result = (JPASummoner) query.getSingleResult();
+        }catch(Exception e){
+            result = null;
+        }
+        closeSession(em);
+        return result;
+    }
     
 }

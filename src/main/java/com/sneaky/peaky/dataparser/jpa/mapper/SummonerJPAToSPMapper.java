@@ -2,12 +2,14 @@ package com.sneaky.peaky.dataparser.jpa.mapper;
 
 import com.sneaky.peaky.dataparser.domain.pojo.SPSummoner;
 import com.sneaky.peaky.dataparser.jpa.pojo.JPASummoner;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Roel
  */
-public class SummonerJPAToSPMapper implements BidirectionalJPAToSPMapper<JPASummoner, SPSummoner>{
+public class SummonerJPAToSPMapper implements BidirectionalJPAToSPMapper<JPASummoner, SPSummoner>, ListBiDirectionalJPAToSPMapper<List<JPASummoner>,List<SPSummoner>>{
 
     @Override
     public JPASummoner mapToJPA(SPSummoner summoner) {
@@ -19,6 +21,7 @@ public class SummonerJPAToSPMapper implements BidirectionalJPAToSPMapper<JPASumm
                 .summonerLevel(summoner.getSummonerLevel())
                 .build();
     }
+    
 
     @Override
     public SPSummoner mapToDomain(JPASummoner jpaSummoner) {
@@ -29,6 +32,24 @@ public class SummonerJPAToSPMapper implements BidirectionalJPAToSPMapper<JPASumm
                 .summonerId(jpaSummoner.getSummonerId())
                 .summonerLevel(jpaSummoner.getSummonerLevel())
                 .build();
+    }
+
+    @Override
+    public List<JPASummoner> mapToJPA(List<SPSummoner> spCollection) {
+        ArrayList<JPASummoner> resultList = new ArrayList<>();
+        for(SPSummoner sPSummoner : spCollection){
+            resultList.add(mapToJPA(sPSummoner));
+        }
+        return resultList;
+    }
+
+    @Override
+    public List<SPSummoner> mapToSP(List<JPASummoner> jpaCollection) {
+        ArrayList<SPSummoner> resultList = new ArrayList<>();
+        for(JPASummoner jPASummoner : jpaCollection){
+            resultList.add(mapToDomain(jPASummoner));
+        } 
+        return resultList;
     }
     
 }

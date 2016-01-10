@@ -9,24 +9,13 @@ import com.sneaky.peaky.dataparser.jpa.pojo.JPARanking;
  */
 public class RankingJPAToSPMapper implements BidirectionalJPAToSPMapper<JPARanking, SPRanking> {
 
-    public JPARanking mapToJPA(SPRanking spRanking, long revisionDate) {
-        return createBasicJPARanking(spRanking)
-                .revisionDate(revisionDate)
-                .build();
-    }
-
     @Override
     public JPARanking mapToJPA(SPRanking spRanking) {
-        return createBasicJPARanking(spRanking)
-                .revisionDate(System.currentTimeMillis())
-                .build();
-    }
-
-    private JPARanking.JPARankingBuilder createBasicJPARanking(SPRanking spRanking) {
         return JPARanking.builder()
                 .isFreshBlood(spRanking.getIsFreshBlood())
                 .isHotStreak(spRanking.getIsHotStreak())
                 .isInactive(spRanking.getIsInactive())
+                .isTeam(spRanking.getIsTeam())
                 .isVeteran(spRanking.getIsVeteran())
                 .lastPlayed(spRanking.getLastPlayed())
                 .leagueName(spRanking.getLeagueName())
@@ -37,7 +26,9 @@ public class RankingJPAToSPMapper implements BidirectionalJPAToSPMapper<JPARanki
                 .queueType(spRanking.getQueueType())
                 .rank(spRanking.getRank())
                 .tier(spRanking.getTier())
-                .wins(spRanking.getWins());
+                .wins(spRanking.getWins())
+                .revisionDate(System.currentTimeMillis())
+                .build();
     }
 
     @Override
@@ -46,6 +37,7 @@ public class RankingJPAToSPMapper implements BidirectionalJPAToSPMapper<JPARanki
                 .isFreshBlood(jpaRanking.getIsFreshBlood())
                 .isHotStreak(jpaRanking.getIsHotStreak())
                 .isInactive(jpaRanking.getIsInactive())
+                .isTeam(jpaRanking.getIsTeam())
                 .isVeteran(jpaRanking.getIsVeteran())
                 .lastPlayed(jpaRanking.getLastPlayed())
                 .leagueName(jpaRanking.getLeagueName())

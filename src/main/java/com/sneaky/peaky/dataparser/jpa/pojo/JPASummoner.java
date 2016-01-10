@@ -1,9 +1,13 @@
 package com.sneaky.peaky.dataparser.jpa.pojo;
 
 import java.util.List;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -34,8 +38,11 @@ public class JPASummoner extends AbstractJPAObject {
     private Integer profileIconId;
     private Long revisionDate;
     private Long summonerLevel;
-    @ManyToMany(mappedBy = "roster")
-    private List<JPATeam> teams;
+    
+    @ElementCollection
+    @CollectionTable(name = "summoner_teams", joinColumns = @JoinColumn(name = "summonerId"))
+    @Column
+    private List<String> teamIds;
 
     public JPASummoner() {
     }

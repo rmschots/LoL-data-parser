@@ -5,6 +5,7 @@
     <class>com.sneaky.peaky.dataparser.jpa.pojo.JPASummoner</class>
     <class>com.sneaky.peaky.dataparser.jpa.pojo.JPAMiniSeries</class>
     <class>com.sneaky.peaky.dataparser.jpa.pojo.JPARanking</class>
+    <class>com.sneaky.peaky.dataparser.jpa.pojo.JPATeam</class>
     <properties>
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/lol_database?zeroDateTimeBehavior=convertToNull"/>

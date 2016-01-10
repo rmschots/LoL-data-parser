@@ -21,9 +21,11 @@ public class SPRanking extends AbstractSPObject{
     private Integer leaguePoints;
     private SPMiniSeries miniSeries;
     private String playerOrTeamId;
+    private Boolean isTeam;
     private String playerOrTeamName;
     private String queueType;
     private Integer rank;
     private String tier;
     private Integer wins;
+    private Long revisionDate;
 }

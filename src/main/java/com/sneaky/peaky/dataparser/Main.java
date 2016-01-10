@@ -1,11 +1,16 @@
 package com.sneaky.peaky.dataparser;
 
+import com.sneaky.peaky.dataparser.dao.TeamDao;
 import com.sneaky.peaky.dataparser.jpa.mapper.SummonerJPAToSPMapper;
 import com.sneaky.peaky.dataparser.domain.mapper.SummonerRestMapper;
+import com.sneaky.peaky.dataparser.service.RankingService;
+import com.sneaky.peaky.dataparser.service.SummonerService;
+import com.sneaky.peaky.dataparser.service.TeamService;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import net.boreeas.riotapi.Shard;
-import net.boreeas.riotapi.rest.Summoner;
+import net.boreeas.riotapi.com.riotgames.platform.game.QueueType;
 import net.boreeas.riotapi.rest.ThrottledApiHandler;
 import static net.boreeas.riotapi.rest.ThrottledApiHandler.*;
 
@@ -25,6 +30,10 @@ public class Main {
         Main m = new Main();
         m.test();
     }
+    
+    private final RankingService rankingService = new RankingService();
+    private final SummonerService summonerService = new SummonerService();
+    private final TeamService teamService = new TeamService();
 
     public void test() throws InterruptedException, ExecutionException, Exception {
         Limit limit1 = new Limit(10, 10, TimeUnit.SECONDS);
@@ -33,17 +42,19 @@ public class Main {
         
 //        RankedTeam team = handler.getTeam("TEAM-f07ed190-f0d9-11e4-b090-c81f66db96d8").get();
 //        System.out.println(team.getName());
-        Summoner summ = handler.getSummoner("Morsu").get();
-        System.out.println(summ.getId());
+//        Summoner summ = handler.getSummoner("Morsu").get();
+//        System.out.println(summ.getId());
         
 //        summ = handler.getSummoner("Je suis kaas").get();
 //        System.out.println(summ.getId());
         
-//        RankingService rankingService = new RankingService();
+//        rankingService.fetchChallengerRanks(handler, QueueType.RANKED_SOLO_5x5);
+        summonerService.fetchAllSummoners(handler);
+        
 //        rankingService.fetchChallengerRanks(handler, QueueType.RANKED_TEAM_5x5);
-        
+//        teamService.fetchAllTeams(handler);
 //        RankingDao rankingDao = new RankingDao();
-        
+//        
 //        List<JPARanking> rankings = rankingDao.findAll();
 //        for(JPARanking jPARanking : rankings){
 //            System.out.println(jPARanking.getPlayerOrTeamName());

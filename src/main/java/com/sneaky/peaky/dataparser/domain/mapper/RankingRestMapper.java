@@ -29,4 +29,11 @@ public class RankingRestMapper implements RestMapper<SPRanking, LeagueItem>{
                 .build();
     }
     
+    public SPRanking mapToSP(LeagueItem leagueItem, boolean isTeam, long revisionDate) {
+        SPRanking ranking = mapToSP(leagueItem);
+        ranking.setIsTeam(isTeam);
+        ranking.setRevisionDate(revisionDate);
+        return ranking;
+    }
+    
 }

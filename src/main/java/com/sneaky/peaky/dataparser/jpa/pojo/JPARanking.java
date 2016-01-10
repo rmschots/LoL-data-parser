@@ -37,7 +37,7 @@ public class JPARanking extends AbstractJPAObject{
     private Integer leaguePoints;
     @OneToOne
     private JPAMiniSeries miniSeries;
-    private JPASummoner player;
+    private Boolean isTeam;
     private String playerOrTeamId;
     private String playerOrTeamName;
     private String queueType;
