@@ -6,13 +6,14 @@
     <class>com.sneaky.peaky.dataparser.jpa.pojo.JPAMiniSeries</class>
     <class>com.sneaky.peaky.dataparser.jpa.pojo.JPARanking</class>
     <class>com.sneaky.peaky.dataparser.jpa.pojo.JPATeam</class>
+    <class>com.sneaky.peaky.dataparser.jpa.pojo.JPAChampion</class>
     <properties>
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/lol_database?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="root"/>
-      <property name="hibernate.hbm2ddl.auto" value="validate"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
     </properties>
   </persistence-unit>
 </persistence>
