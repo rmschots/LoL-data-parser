@@ -1,5 +1,6 @@
 package com.sneaky.peaky.dataparser.service;
 
+import com.sneaky.peaky.dataparser.dao.EntityManagerManager;
 import com.sneaky.peaky.dataparser.dao.RankingDao;
 import com.sneaky.peaky.dataparser.dao.SummonerDao;
 import com.sneaky.peaky.dataparser.dao.TeamDao;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
+import javax.persistence.EntityManager;
 import net.boreeas.riotapi.rest.Summoner;
 import net.boreeas.riotapi.rest.ThrottledApiHandler;
 
@@ -21,8 +23,10 @@ import net.boreeas.riotapi.rest.ThrottledApiHandler;
 public class SummonerService {
 
     public void fetchAllSummoners(ThrottledApiHandler handler) throws InterruptedException, ExecutionException {
-        RankingDao rankingDao = new RankingDao();
-        TeamDao teamDao = new TeamDao();
+        EntityManager em = EntityManagerManager.openSession();
+        
+        RankingDao rankingDao = new RankingDao(em);
+        TeamDao teamDao = new TeamDao(em);
 
         Set<Long> rankedIds = rankingDao.findAllSummonerIds();
         rankedIds.addAll(teamDao.findAllSummonersOfTeams());
@@ -42,7 +46,7 @@ public class SummonerService {
 
         SummonerRestMapper restMapper = new SummonerRestMapper();
         SummonerJPAToSPMapper jpaMapper = new SummonerJPAToSPMapper();
-        SummonerDao summonerDao = new SummonerDao();
+        SummonerDao summonerDao = new SummonerDao(em);
 
         for (Integer[] ids : summIds) {
             Map<Integer, Summoner> summonerMap = handler.getSummoners(ids).get();
@@ -55,16 +59,22 @@ public class SummonerService {
                 }
             }
         }
+        
+        EntityManagerManager.closeSession(em);
     }
 
     public void fetchSummoner(ThrottledApiHandler handler, Long summonerId) throws InterruptedException, ExecutionException {
+        EntityManager em = EntityManagerManager.openSession();
+        
         SummonerRestMapper restMapper = new SummonerRestMapper();
         SummonerJPAToSPMapper jpaMapper = new SummonerJPAToSPMapper();
-        SummonerDao summonerDao = new SummonerDao();
+        SummonerDao summonerDao = new SummonerDao(em);
 
         Summoner summoner = handler.getSummoner(summonerId.toString()).get();
         SPSummoner sPSummoner = restMapper.mapToSP(summoner);
         JPASummoner jPASummoner = jpaMapper.mapToJPA(sPSummoner);
         summonerDao.create(jPASummoner);
+        
+        EntityManagerManager.closeSession(em);
     }
 }

@@ -15,7 +15,7 @@ import java.util.Collection;
  * @param <A>
  * @param <B>
  */
-public interface ListBiDirectionalJPAToSPMapper <A extends Collection<? extends AbstractJPAObject>, B extends Collection<? extends AbstractSPObject>>{
+public interface CollectionBiDirectionalJPAToSPMapper <A extends Collection<? extends AbstractJPAObject>, B extends Collection<? extends AbstractSPObject>>{
     abstract A mapToJPA(B spCollection);
     abstract B mapToSP(A jpaCollection);
 }

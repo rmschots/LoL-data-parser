@@ -1,5 +1,6 @@
 package com.sneaky.peaky.dataparser.jpa.pojo;
 
+import com.sneaky.peaky.dataparser.jpa.pojo.staticdata.JPAChampion;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

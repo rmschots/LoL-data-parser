@@ -9,6 +9,6 @@ import java.util.Collection;
  * @param <A>
  * @param <B>
  */
-public interface ListRestMapper<A extends Collection<? extends AbstractSPObject>, B extends Collection> {
+public interface CollectionRestMapper<A extends Collection<? extends AbstractSPObject>, B extends Collection> {
     abstract A mapToSP(B restObject);
 }

@@ -1,17 +1,18 @@
-package com.sneaky.peaky.dataparser.domain.mapper;
+package com.sneaky.peaky.dataparser.domain.mapper.staticdata;
 
-import com.sneaky.peaky.dataparser.domain.pojo.SPChampion;
-import java.util.ArrayList;
+import com.sneaky.peaky.dataparser.domain.mapper.CollectionRestMapper;
+import com.sneaky.peaky.dataparser.domain.mapper.RestMapper;
+import com.sneaky.peaky.dataparser.domain.pojo.staticdata.SPChampion;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Set;
 import net.boreeas.riotapi.rest.Champion;
 
 /**
  *
  * @author Roel Mangelschots
  */
-public class ChampionRestMapper implements RestMapper<SPChampion, Champion>, ListRestMapper<List<SPChampion>, Collection<Champion>>{
+public class ChampionRestMapper implements RestMapper<SPChampion, Champion>, CollectionRestMapper<Set<SPChampion>, Collection<Champion>>{
 
     @Override
     public SPChampion mapToSP(Champion champion) {
@@ -23,8 +24,8 @@ public class ChampionRestMapper implements RestMapper<SPChampion, Champion>, Lis
     }
 
     @Override
-    public List<SPChampion> mapToSP(Collection<Champion> champions) {
-        List<SPChampion> resultList = new ArrayList<>();
+    public Set<SPChampion> mapToSP(Collection<Champion> champions) {
+        Set<SPChampion> resultList = new HashSet<>();
         for(Champion champion : champions){
             resultList.add(mapToSP(champion));
         }

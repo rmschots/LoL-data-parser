@@ -2,12 +2,12 @@ package com.sneaky.peaky.dataparser;
 
 import com.sneaky.peaky.dataparser.jpa.mapper.SummonerJPAToSPMapper;
 import com.sneaky.peaky.dataparser.domain.mapper.SummonerRestMapper;
+import com.sneaky.peaky.dataparser.service.MatchService;
 import com.sneaky.peaky.dataparser.service.RankingService;
 import com.sneaky.peaky.dataparser.service.StaticDataService;
 import com.sneaky.peaky.dataparser.service.SummonerMatchService;
 import com.sneaky.peaky.dataparser.service.SummonerService;
 import com.sneaky.peaky.dataparser.service.TeamService;
-import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import net.boreeas.riotapi.Shard;
@@ -35,6 +35,7 @@ public class Main {
     private final TeamService teamService = new TeamService();
     private final StaticDataService staticDataService = new StaticDataService();
     private final SummonerMatchService summonerMatchService = new SummonerMatchService();
+    private final MatchService matchService = new MatchService();
 
     public void test() throws InterruptedException, ExecutionException, Exception {
         ThrottledApiHandler.Limit limit1 = new ThrottledApiHandler.Limit(10, 10, TimeUnit.SECONDS);
@@ -49,10 +50,13 @@ public class Main {
 //        System.out.println(summ.getId());
 //        rankingService.fetchChallengerRanks(handler, QueueType.RANKED_SOLO_5x5);
 //        summonerService.fetchAllSummoners(handler);
-        
         staticDataService.fetchAllChampions(handler);
+        staticDataService.fetchAllMasteries(handler);
+        staticDataService.fetchAllRunes(handler);
+
+//        summonerMatchService.fetchMatchesForSummoners(handler, new ArrayList<>(23278439));
         
-         summonerMatchService.fetchMatchesForSummoners(handler, new ArrayList<>(23278439));
+        matchService.fetchMatch(handler, 2492721879L);
 
 //        rankingService.fetchChallengerRanks(handler, QueueType.RANKED_TEAM_5x5);
 //        teamService.fetchAllTeams(handler);

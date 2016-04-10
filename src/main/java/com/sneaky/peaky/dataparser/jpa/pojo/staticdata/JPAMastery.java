@@ -1,14 +1,11 @@
 package com.sneaky.peaky.dataparser.jpa.pojo.staticdata;
 
 import com.sneaky.peaky.dataparser.jpa.pojo.AbstractJPAObject;
-import com.sneaky.peaky.dataparser.jpa.pojo.AbstractJPAObject;
-import java.util.Set;
-import javax.persistence.CollectionTable;
-import javax.persistence.ElementCollection;
+import com.sneaky.peaky.dataparser.jpa.pojo.JPAParticipant;
+import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -25,17 +22,15 @@ import lombok.experimental.Builder;
 @Builder
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Entity
-@Table(name = "champion")
-public class JPAChampion extends AbstractJPAObject {
+@Table(name = "mastery")
+public class JPAMastery extends AbstractJPAObject {
     @Id
     private Integer id;
     private String name;
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "champion_tag")
-    private Set<String> tagList;
+    @ManyToMany(mappedBy = "masteries")
+    private List<JPAParticipant> participants;
     
-    public JPAChampion(){
+    public JPAMastery(){
     }
 
 }
-    

@@ -9,8 +9,8 @@ import javax.persistence.Query;
  * @author Roel Mangelschots
  */
 public class SummonerDao extends AbstractDao<JPASummoner> implements Dao<JPASummoner>{
-    public SummonerDao(){
-        super();
+    public SummonerDao(EntityManager em){
+        super(em);
     }
     
     public JPASummoner findBySummonerId(Long summonerId, Long revisionDate) {
@@ -18,7 +18,6 @@ public class SummonerDao extends AbstractDao<JPASummoner> implements Dao<JPASumm
                 "SELECT o from ");
         queryString.append(type.getSimpleName()).append(" o ");
         queryString.append("WHERE o.summonerId = ").append(summonerId).append(" AND o.revisionDate = ").append(revisionDate);
-        EntityManager em = openSession();
         final Query query = em.createQuery(queryString.toString());
         JPASummoner result;
         try{
@@ -26,7 +25,6 @@ public class SummonerDao extends AbstractDao<JPASummoner> implements Dao<JPASumm
         }catch(Exception e){
             result = null;
         }
-        closeSession(em);
         return result;
     }    
 }

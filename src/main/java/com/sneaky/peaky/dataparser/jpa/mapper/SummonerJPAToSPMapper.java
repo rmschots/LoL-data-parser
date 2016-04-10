@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author Roel
  */
-public class SummonerJPAToSPMapper implements BidirectionalJPAToSPMapper<JPASummoner, SPSummoner>, ListBiDirectionalJPAToSPMapper<List<JPASummoner>,List<SPSummoner>>{
+public class SummonerJPAToSPMapper implements BidirectionalJPAToSPMapper<JPASummoner, SPSummoner>, CollectionBiDirectionalJPAToSPMapper<List<JPASummoner>,List<SPSummoner>>{
 
     @Override
     public JPASummoner mapToJPA(SPSummoner summoner) {
@@ -37,18 +37,18 @@ public class SummonerJPAToSPMapper implements BidirectionalJPAToSPMapper<JPASumm
     @Override
     public List<JPASummoner> mapToJPA(List<SPSummoner> spCollection) {
         ArrayList<JPASummoner> resultList = new ArrayList<>();
-        for(SPSummoner sPSummoner : spCollection){
+        spCollection.stream().forEach((sPSummoner) -> {
             resultList.add(mapToJPA(sPSummoner));
-        }
+        });
         return resultList;
     }
 
     @Override
     public List<SPSummoner> mapToSP(List<JPASummoner> jpaCollection) {
         ArrayList<SPSummoner> resultList = new ArrayList<>();
-        for(JPASummoner jPASummoner : jpaCollection){
+        jpaCollection.stream().forEach((jPASummoner) -> {
             resultList.add(mapToDomain(jPASummoner));
-        } 
+        }); 
         return resultList;
     }
     

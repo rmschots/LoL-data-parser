@@ -12,12 +12,11 @@ import javax.persistence.Query;
  * @author Roel
  */
 public class RankingDao extends AbstractDao<JPARanking> implements Dao<JPARanking>{
-    public RankingDao(){
-        super();
+    public RankingDao(EntityManager em){
+        super(em);
     }
     
     public List<String> findAllTeamIds() {
-        EntityManager em = openSession();
         final Query query = em.createQuery("select distinct o.playerOrTeamId from JPARanking o WHERE o.isTeam = true");
         List<String> result;
         try{
@@ -25,12 +24,10 @@ public class RankingDao extends AbstractDao<JPARanking> implements Dao<JPARankin
         }catch(Exception e){
             result = null;
         }
-        closeSession(em);
         return result;
     }
     
     public Set<Long> findAllSummonerIds() {
-        EntityManager em = openSession();
         final Query query = em.createQuery("select distinct o.playerOrTeamId from JPARanking o WHERE o.isTeam = false");
         Set<String> result;
         try{
@@ -38,7 +35,6 @@ public class RankingDao extends AbstractDao<JPARanking> implements Dao<JPARankin
         }catch(Exception e){
             result = null;
         }
-        closeSession(em);
         Set<Long> variable = (Set<Long>)(Set<?>) result;
         return variable;
     }

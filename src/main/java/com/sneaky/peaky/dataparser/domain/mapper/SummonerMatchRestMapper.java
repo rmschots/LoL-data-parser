@@ -1,17 +1,17 @@
 package com.sneaky.peaky.dataparser.domain.mapper;
 
-import com.sneaky.peaky.dataparser.domain.pojo.SPChampion;
+import com.sneaky.peaky.dataparser.domain.pojo.staticdata.SPChampion;
 import com.sneaky.peaky.dataparser.domain.pojo.SPSummonerMatch;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import net.boreeas.riotapi.rest.MatchSummary;
 
 /**
  *
  * @author Roel Mangelschots
  */
-public class SummonerMatchRestMapper implements RestMapper<SPSummonerMatch, MatchSummary>, ListRestMapper<List<SPSummonerMatch>, List<MatchSummary>> {
+public class SummonerMatchRestMapper implements RestMapper<SPSummonerMatch, MatchSummary>, CollectionRestMapper<Set<SPSummonerMatch>, Set<MatchSummary>> {
 
     @Override
     public SPSummonerMatch mapToSP(MatchSummary match) {
@@ -38,16 +38,16 @@ public class SummonerMatchRestMapper implements RestMapper<SPSummonerMatch, Matc
     }
 
     @Override
-    public List<SPSummonerMatch> mapToSP(List<MatchSummary> restObject) {
-        List<SPSummonerMatch> resultList = new ArrayList<>();
+    public Set<SPSummonerMatch> mapToSP(Set<MatchSummary> restObject) {
+        Set<SPSummonerMatch> resultList = new HashSet<>();
         for (MatchSummary ms : restObject) {
             resultList.add(mapToSP(ms));
         }
         return resultList;
     }
 
-    public List<SPSummonerMatch> mapToSP(List<MatchSummary> restObject, Map<Integer, SPChampion> championMap, Long summonerId) {
-        List<SPSummonerMatch> resultList = new ArrayList<>();
+    public Set<SPSummonerMatch> mapToSP(Set<MatchSummary> restObject, Map<Integer, SPChampion> championMap, Long summonerId) {
+        Set<SPSummonerMatch> resultList = new HashSet<>();
         for (MatchSummary ms : restObject) {
             resultList.add(mapToSP(ms, championMap, summonerId));
         }

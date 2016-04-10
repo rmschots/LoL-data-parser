@@ -1,7 +1,7 @@
 package com.sneaky.peaky.dataparser.dao;
 
 import com.sneaky.peaky.dataparser.jpa.pojo.AbstractJPAObject;
-import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -9,7 +9,7 @@ import java.util.List;
  * @param <T> AbstractJPAObject
  */
 public interface Dao<T extends AbstractJPAObject> {
-    List<T> findAll();
+    Set<T> findAll();
     T create(T t);
     void delete(Object id);
     T find(Object id);

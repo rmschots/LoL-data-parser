@@ -10,7 +10,7 @@ import net.boreeas.riotapi.rest.Summoner;
  *
  * @author Roel
  */
-public class SummonerRestMapper implements RestMapper<SPSummoner, Summoner>, ListRestMapper<List<SPSummoner>, List<TeamMemberInfo>>{
+public class SummonerRestMapper implements RestMapper<SPSummoner, Summoner>, CollectionRestMapper<List<SPSummoner>, List<TeamMemberInfo>>{
 
     @Override
     public SPSummoner mapToSP(Summoner summoner) {

@@ -1,17 +1,20 @@
 package com.sneaky.peaky.dataparser.jpa.mapper;
 
 import com.sneaky.peaky.dataparser.domain.pojo.SPSummonerMatch;
-import com.sneaky.peaky.dataparser.jpa.pojo.JPAChampion;
+import com.sneaky.peaky.dataparser.jpa.mapper.staticdata.ChampionJPAToSPMapper;
+import com.sneaky.peaky.dataparser.jpa.pojo.staticdata.JPAChampion;
 import com.sneaky.peaky.dataparser.jpa.pojo.JPASummonerMatch;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
  * @author Roel Mangelschots
  */
-public class SummonerMatchJPAToSPMapper implements BidirectionalJPAToSPMapper<JPASummonerMatch, SPSummonerMatch>, ListBiDirectionalJPAToSPMapper<List<JPASummonerMatch>, List<SPSummonerMatch>> {
+public class SummonerMatchJPAToSPMapper implements BidirectionalJPAToSPMapper<JPASummonerMatch, SPSummonerMatch>, CollectionBiDirectionalJPAToSPMapper<Set<JPASummonerMatch>, Set<SPSummonerMatch>> {
 
     @Override
     public JPASummonerMatch mapToJPA(SPSummonerMatch spObject) {
@@ -54,28 +57,28 @@ public class SummonerMatchJPAToSPMapper implements BidirectionalJPAToSPMapper<JP
     }
 
     @Override
-    public List<JPASummonerMatch> mapToJPA(List<SPSummonerMatch> spCollection) {
-        ArrayList<JPASummonerMatch> resultList = new ArrayList<>();
-        for(SPSummonerMatch spMatch : spCollection){
+    public Set<JPASummonerMatch> mapToJPA(Set<SPSummonerMatch> spCollection) {
+        Set<JPASummonerMatch> resultList = new HashSet<>();
+        spCollection.stream().forEach((spMatch) -> {
             resultList.add(mapToJPA(spMatch));
-        }
+        });
         return resultList;
     }
     
-    public List<JPASummonerMatch> mapToJPA(List<SPSummonerMatch> spCollection, Map<Integer, JPAChampion> jpaChampMap) {
-        ArrayList<JPASummonerMatch> resultList = new ArrayList<>();
-        for(SPSummonerMatch spMatch : spCollection){
+    public Set<JPASummonerMatch> mapToJPA(Set<SPSummonerMatch> spCollection, Map<Integer, JPAChampion> jpaChampMap) {
+        Set<JPASummonerMatch> resultList = new HashSet<>();
+        spCollection.stream().forEach((spMatch) -> {
             resultList.add(mapToJPA(spMatch, jpaChampMap));
-        }
+        });
         return resultList;
     }
 
     @Override
-    public List<SPSummonerMatch> mapToSP(List<JPASummonerMatch> jpaCollection) {
-        ArrayList<SPSummonerMatch> resultList = new ArrayList<>();
-        for(JPASummonerMatch jpaMatch : jpaCollection){
+    public Set<SPSummonerMatch> mapToSP(Set<JPASummonerMatch> jpaCollection) {
+        Set<SPSummonerMatch> resultList = new HashSet<>();
+        jpaCollection.stream().forEach((jpaMatch) -> {
             resultList.add(mapToDomain(jpaMatch));
-        } 
+        }); 
         return resultList;
     }
 

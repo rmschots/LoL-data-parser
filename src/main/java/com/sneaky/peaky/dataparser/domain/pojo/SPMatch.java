@@ -1,12 +1,10 @@
 package com.sneaky.peaky.dataparser.domain.pojo;
 
-import com.sneaky.peaky.dataparser.domain.pojo.staticdata.SPChampion;
+import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Builder;
 import net.boreeas.riotapi.com.riotgames.platform.game.QueueType;
-import net.boreeas.riotapi.constants.Lane;
-import net.boreeas.riotapi.constants.Role;
 import net.boreeas.riotapi.constants.Season;
 
 /**
@@ -16,15 +14,16 @@ import net.boreeas.riotapi.constants.Season;
 @Getter
 @Setter
 @Builder
-public class SPSummonerMatch extends AbstractSPObject{
+public class SPMatch extends AbstractSPObject{
     private Long id;
-    private Long summonerId;
     
-    private Long startTime;
-    private SPChampion champion;
+    private Long matchCreation;
+    private Long matchDuration;
+    private String matchVersion;
+    private Set<SPParticipant> participants;
+    private QueueType queueType;
     private String region;
-    private QueueType queue;
     private Season season;
-    private Role role;
-    private Lane lane;
+    private SPMatchteam team1;
+    private SPMatchteam team2;
 }

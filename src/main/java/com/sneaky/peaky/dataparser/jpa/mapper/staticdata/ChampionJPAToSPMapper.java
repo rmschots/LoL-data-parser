@@ -1,18 +1,17 @@
-package com.sneaky.peaky.dataparser.jpa.mapper;
+package com.sneaky.peaky.dataparser.jpa.mapper.staticdata;
 
-import com.sneaky.peaky.dataparser.domain.pojo.AbstractSPObject;
-import com.sneaky.peaky.dataparser.domain.pojo.SPChampion;
-import com.sneaky.peaky.dataparser.jpa.pojo.AbstractJPAObject;
-import com.sneaky.peaky.dataparser.jpa.pojo.JPAChampion;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import com.sneaky.peaky.dataparser.domain.pojo.staticdata.SPChampion;
+import com.sneaky.peaky.dataparser.jpa.mapper.BidirectionalJPAToSPMapper;
+import com.sneaky.peaky.dataparser.jpa.mapper.CollectionBiDirectionalJPAToSPMapper;
+import com.sneaky.peaky.dataparser.jpa.pojo.staticdata.JPAChampion;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
  * @author Roel Mangelschots
  */
-public class ChampionJPAToSPMapper implements BidirectionalJPAToSPMapper<JPAChampion, SPChampion>, ListBiDirectionalJPAToSPMapper<List<JPAChampion>, List<SPChampion>> {
+public class ChampionJPAToSPMapper implements BidirectionalJPAToSPMapper<JPAChampion, SPChampion>, CollectionBiDirectionalJPAToSPMapper<Set<JPAChampion>, Set<SPChampion>> {
 
     @Override
     public JPAChampion mapToJPA(SPChampion spc) {
@@ -33,20 +32,20 @@ public class ChampionJPAToSPMapper implements BidirectionalJPAToSPMapper<JPACham
     }
 
     @Override
-    public List<JPAChampion> mapToJPA(List<SPChampion> spCollection) {
-        List<JPAChampion> champions = new ArrayList<>();
-        for(SPChampion champion : spCollection){
+    public Set<JPAChampion> mapToJPA(Set<SPChampion> spCollection) {
+        Set<JPAChampion> champions = new HashSet<>();
+        spCollection.stream().forEach((champion) -> {
             champions.add(mapToJPA(champion));
-        }
+        });
         return champions;
     }
 
     @Override
-    public List<SPChampion> mapToSP(List<JPAChampion> jpaCollection) {
-        List<SPChampion> champions = new ArrayList<>();
-        for(JPAChampion champion : jpaCollection){
+    public Set<SPChampion> mapToSP(Set<JPAChampion> jpaCollection) {
+        Set<SPChampion> champions = new HashSet<>();
+        jpaCollection.stream().forEach((champion) -> {
             champions.add(mapToDomain(champion));
-        }
+        });
         return champions;
     }
 
