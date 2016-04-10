@@ -28,23 +28,5 @@ public class SummonerDao extends AbstractDao<JPASummoner> implements Dao<JPASumm
         }
         closeSession(em);
         return result;
-    }
-    
-    public JPASummoner findBySummonerId(String summonerId) {
-        final StringBuffer queryString = new StringBuffer(
-                "SELECT o from ");
-        queryString.append(type.getSimpleName()).append(" o ");
-        queryString.append("WHERE o.summonerId = ").append(summonerId).append(" ORDER BY o.revisionDate DESC");
-        EntityManager em = openSession();
-        final Query query = em.createQuery(queryString.toString()).setMaxResults(1);
-        JPASummoner result;
-        try{
-            result = (JPASummoner) query.getSingleResult();
-        }catch(Exception e){
-            result = null;
-        }
-        closeSession(em);
-        return result;
-    }
-    
+    }    
 }
